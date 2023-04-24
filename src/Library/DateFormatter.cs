@@ -17,4 +17,27 @@ public class DateFormatter
     {
         return date.Substring(6) + "-" + date.Substring(3, 2) + "-" + date.Substring(0, 2);
     }
+
+    public static string ChangeFormat (string date)
+    {
+        if (!StringIsValid(input))
+        {
+            return string.Empty;
+        }
+        return date.Substring(6) + "-" + date.Substring(3, 2) + "-" + date.Substring(0, 2);
+    }
+    public bool StringIsValid(string input)
+    {
+        char[] barra = {'/'};
+        string[] Date;
+        string date;
+
+        Date = input.Split(barra);
+
+        date = Convert.ToString(Date);
+
+        int Day = Convert.ToInt32(date.Substring(0, 2));
+        int Month = Convert.ToInt32(date.Substring(3, 2));
+        int Year = Convert.ToInt32(date.Substring(6));
+    }
 }
