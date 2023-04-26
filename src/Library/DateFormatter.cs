@@ -13,31 +13,31 @@ public class DateFormatter
     /// </summary>
     /// <param name="date">Una fecha en formato "dd/mm/yyyy".</param>
     /// <returns>La fecha convertida al formato "yyyy-mm-dd".</returns>
-    public static string ChangeFormat(string date)
-    {
-        return date.Substring(6) + "-" + date.Substring(3, 2) + "-" + date.Substring(0, 2);
-    }
-
-    public static string ChangeFormat (string date)
+    public static string ChangeFormat (string input)
     {
         if (!StringIsValid(input))
         {
             return string.Empty;
         }
-        return date.Substring(6) + "-" + date.Substring(3, 2) + "-" + date.Substring(0, 2);
+        return input.Substring(6) + "-" + input.Substring(3, 2) + "-" + input.Substring(0, 2);
     }
-    public bool StringIsValid(string input)
+    public static bool StringIsValid(string input)
     {
-        char[] barra = {'/'};
-        string[] Date;
-        string date;
+        if (string.IsNullOrEmpty(input))
+        {
+            return false;
+        } 
+        else
+        {
+            string date;
 
-        Date = input.Split(barra);
+            date = Convert.ToString(input);
 
-        date = Convert.ToString(Date);
-
-        int Day = Convert.ToInt32(date.Substring(0, 2));
-        int Month = Convert.ToInt32(date.Substring(3, 2));
-        int Year = Convert.ToInt32(date.Substring(6));
+            int Day = Convert.ToInt32(input.Substring(0, 2));
+            int Month = Convert.ToInt32(input.Substring(3, 2));
+            int Year = Convert.ToInt32(input.Substring(6));
+            return (Day>=1 && Day<=31) && (Month>=1 && Month<=12) && (Year>=1 && Year <=2024);
+        }
+    
     }
 }

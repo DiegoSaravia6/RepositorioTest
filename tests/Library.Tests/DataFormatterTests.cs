@@ -1,4 +1,4 @@
-namespace Library.Tests;
+namespace TestDateFormat;
 
 public class DateFormatterTests
 {
@@ -8,29 +8,32 @@ public class DateFormatterTests
     }
 
     [Test]
-    public void Test1()
-    {
-        const string input = "19-09-1999";
-        const string expect = "19-09-1999";
-        
-        Assert.pass();
-    }
-
-    [Test]
-    public void Test2()
+    public void TestWrongDate1()
     {
         const string input = "19/09/1999";
-        const string expect = "19-09-1999";
-
-        Assert.pass();
+        const string expected = "19-09-1999";
+        
+        string actual = DateFormatter.ChangeFormat(input);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
-    public void Test3()
+    public void TestWrongDate2()
     {
-        const string input = "";
-        const string expect = "";
+        const string input = "34/09/1999";
+        const string expected = " ";
+        
+        string actual = DateFormatter.ChangeFormat(input);
+        Assert.That(actual, Is.EqualTo(expected));
+    }
 
-        Assert.pass();
+    [Test]
+    public void TestWrongDate3()
+    {
+        const string input = " ";
+        const string expected = " ";
+        
+        string actual = DateFormatter.ChangeFormat(input);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }
